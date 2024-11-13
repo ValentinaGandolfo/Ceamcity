@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilo.css">
+    <title>CEAMCITY</title>
+    <style>
+        
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            background-color: #DEB887; 
+            text-align: center;
+        }
+
+       
+        .countdown-container {
+            background-color: rgba(0, 0, 0, 0.6); 
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            max-width: 300px;
+            width: 100%;
+        }
+
+        .countdown {
+            font-size: 2rem;
+        }
+
+        
+        @media (min-width: 600px) {
+            .countdown {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1>TOMO 1 DEL MEJOR CASO </h1>
+        <div class="countdown" id="countdown">Cargando...</div>
+    </div>
+
+    <script>
+        
+        const countdownElement = document.getElementById("countdown");
+        const now = new Date();
+        const tomorrow = new Date(now.getFullYear(2024), now.getMonth(11), now.getDate(14) + 1, 13, 0, 0);
+
+        
+        function updateCountdown() {
+            const now = new Date();
+            const timeRemaining = tomorrow - now;
+
+            if (timeRemaining <= 0) {
+                countdownElement.innerHTML = "¡Es la hora!";
+                clearInterval(countdownInterval);
+                return;
+            }
+
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); 
+    </script>
+</body>
+</html>
